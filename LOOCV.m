@@ -9,7 +9,7 @@ inds = x1 < 0.90 | x1 > 1.1 | ...
 
 disp(['Deleted sims: ' num2str(sum(inds))]);
 x1(inds) = []; x2(inds) = []; x3(inds) = []; x4(inds) = []; S(inds) = [];
-nS = S; nS(inds) = []; normaliser = max(nS);
+nS = S; normaliser = max(nS);
 
 % Combine x1, x2, x3, and x4 into a single matrix for training data
 dataPoints = [x1(:), x2(:), x3(:), x4(:)];

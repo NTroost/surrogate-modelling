@@ -9,7 +9,7 @@ dbs_to_load = {db};
 % DB specific code
 switch 1
     case strcmp(db, 'dummy')
-        epsilon = 1e-4;  % numerical stability
+        epsilon = 1e-8;  % numerical stability
         clr = [0 0 0];
         mrkr = 'o';
     case strcmp(db, 'Some other db')
@@ -23,8 +23,6 @@ for db_name = dbs_to_load
     x1 = [x1 a1]; x2 = [x2 a2]; x3 = [x3 a3]; x4 = [x4 a4]; S = [S A];
 end
 
-S = S(:).^2;
-
 %% Leave-one-out cross-validation to check accuracy of Kriging durrogate model
 LOOCV(x1, x2, x3, x4, S, epsilon, clr, mrkr)
 
@@ -36,7 +34,7 @@ Hessian_components(x1, x2, x3, x4, S, epsilon, Hessian_stability_plot, clr);
 Hessian_stability_plot = false;
 H = Hessian_components(x1, x2, x3, x4, S, epsilon, Hessian_stability_plot);
 
-%% Plot required info
+%% Make a figure
 % correlation matrix
 D = sqrt(diag(H));          % Vector of "standard deviations"
 R = H ./ (D * D');          % Element-wise division
